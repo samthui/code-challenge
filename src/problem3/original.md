@@ -72,7 +72,7 @@
 
 8.2. `children` is destructured but never rendered, so the component accepts a prop contract it does not honor.
 
-## Annotated Original Code
+# Annotated Original Code
 
 ```tsx
 // Problem 1.1: WalletBalance is missing blockchain even though the component reads balance.blockchain.

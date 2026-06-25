@@ -1,10 +1,15 @@
-# 99Tech Code Challenge #1 #
+# Code Challenge
 
-Note that if you fork this repository, your responses may be publicly linked to this repo.  
-Please submit your application along with the solutions attached or linked.   
+## Navigation
 
-It is important that you minimally attempt the problems, even if you do not arrive at a working solution.
+Each solution lives in its corresponding problem folder:
 
-## Submission ##
-You can either provide a link to an online repository, attach the solution in your application, or whichever method you prefer.
-We're cool as long as we can view your solution without any pain.
+- `src/problem1`
+- `src/problem2`
+- `src/problem3`
+
+Start by reading the `README.md` file inside each problem folder. 
+
+Each one includes the task, the solution, and guidance for navigating the files and folders within that problem. 
+
+When available, a problem README may also provide scripts or steps for running, building, testing, etc.

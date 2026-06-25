@@ -14,6 +14,7 @@ The solution should also provide a refactored version of the code, but more weig
 
 ## Files
 
-1. Review the categorized list of problematic items in [original.md](./original.md#1-correctness--data-flow).
-2. Review the annotated original code in [original.md](./original.md#annotated-original-code).
-3. Review the refactored implementation in [refactor.tsx](./refactor.tsx).
+1. [original.md](./original.md) includes two parts: 
+    - the categorized list of problematic items in [original.md](./original.md#1-correctness--data-flow).
+    - the annotated original code in [original.md](./original.md#annotated-original-code).
+2. [refactor.tsx](./refactor.tsx) provides the refactored version of the code.

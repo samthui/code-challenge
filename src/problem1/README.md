@@ -1,6 +1,33 @@
 # Problem 1
 
-The solution is in `solution.js` and includes three implementations:
+
+## Task
+
+Provide 3 unique implementations of the following function in JavaScript.
+
+**Input**: `n` - any integer
+
+*Assuming this input will always produce a result lesser than `Number.MAX_SAFE_INTEGER`*.
+
+**Output**: `return` - summation to `n`, i.e. `sum_to_n(5) === 1 + 2 + 3 + 4 + 5 === 15`.
+
+```jsx
+var sum_to_n_a = function(n) {
+    // your code here
+};
+
+var sum_to_n_b = function(n) {
+    // your code here
+};
+
+var sum_to_n_c = function(n) {
+    // your code here
+};
+```
+
+## Solutions
+
+The solution is in [solution.js](./solution.js) and includes three implementations:
 
 - `sum_to_n_a`: closed-form triangular number calculation
 - `sum_to_n_b`: recursive recurrence over halves
@@ -26,7 +53,7 @@ node src/problem1/benchmark.js
 
 ## Verify
 
-Run the verifier from the repository root: ⚠️ to run this command, check the [Prerequisites](#prerequisites-to-run-node-commands) section.
+Run the verifier from the repository root to execute the tests: ⚠️ to run this command, check the [Prerequisites](#prerequisites-to-run-node-commands) section.
 
 ```bash
 node src/problem1/verify.js

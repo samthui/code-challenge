@@ -6,6 +6,7 @@ Vite + React + TypeScript crypto swap form. The app keeps clean architecture bou
 
 - Swap output uses the crypto cross-rate formula `(fromAmount * fromPrice) / toPrice`, where both prices are normalized from the same quoted unit.
 - The Switcheo interview price feed is treated as USD-denominated price data, so the app computes an indicative USD cross-rate rather than an executable on-chain swap.
+- Swap fees, gas costs, and related execution-cost assumptions are currently hardcoded.
 
 ## Run The App
 
