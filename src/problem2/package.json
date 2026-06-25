@@ -1,0 +1,30 @@
+{
+  "name": "currency-swap",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "latest",
+    "@vitejs/plugin-react": "latest",
+    "axios": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "swr": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@testing-library/react": "latest",
+    "@testing-library/user-event": "latest",
+    "@types/node": "^26.0.1",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "jsdom": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}
