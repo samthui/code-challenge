@@ -1,4 +1,5 @@
 import { createSwapViewModel } from "../../../shared/presentation/createSwapViewModel";
+import { formatEditableAmount } from "../../../shared/presentation/formatters";
 import { getTokenIconUrl } from "../../../shared/presentation/tokenIcons";
 import { UI_TEXT } from "../../../shared/presentation/uiText";
 import { AssetInput } from "./AssetInput";
@@ -44,22 +45,21 @@ export function SwapForm() {
   return (
     <form className="swap-form" onSubmit={handleSubmit}>
       <header className="swap-header">
-        <div>
-          <p>Currency Swap</p>
-          <h1>Swap crypto assets</h1>
-        </div>
+        <h1>Swap crypto assets</h1>
         <span className={`market-pill${priceState.usedFallback ? " is-fallback" : ""}`}>
           {priceState.isLoading ? UI_TEXT.loadingPrices : model.marketStatus}
         </span>
       </header>
 
       <AssetInput
-        amount={form.amount}
+        amount={form.isAmountFocused ? form.amount : formatEditableAmount(form.amount)}
         error={model.amountError}
         getTokenIconUrl={getTokenIconUrl}
         id="from-amount"
         label="Amount to send"
         onAmountChange={form.setAmount}
+        onAmountBlur={() => form.setIsAmountFocused(false)}
+        onAmountFocus={() => form.setIsAmountFocused(true)}
         onTokenChange={form.setFromSymbol}
         tokenSymbol={form.fromSymbol}
         tokens={priceState.tokens}

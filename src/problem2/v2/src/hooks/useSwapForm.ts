@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TOKEN_SYMBOLS } from "../../../shared/domain/tokens";
+import { normalizeEditableAmountInput } from "../../../shared/presentation/formatters";
 
 interface SwapPairState {
   amount: string;
@@ -13,11 +14,12 @@ export function useSwapForm() {
     fromSymbol: TOKEN_SYMBOLS.ETH,
     toSymbol: TOKEN_SYMBOLS.USDC
   });
+  const [isAmountFocused, setIsAmountFocused] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
   function setAmount(amount: string) {
-    setPairState((current) => ({ ...current, amount }));
+    setPairState((current) => ({ ...current, amount: normalizeEditableAmountInput(amount) }));
   }
 
   function setFromSymbol(fromSymbol: string) {
@@ -42,8 +44,10 @@ export function useSwapForm() {
   return {
     amount: pairState.amount,
     fromSymbol: pairState.fromSymbol,
+    isAmountFocused,
     isSubmitting,
     setAmount,
+    setIsAmountFocused,
     setFromSymbol,
     setIsSubmitting,
     setSuccessMessage,

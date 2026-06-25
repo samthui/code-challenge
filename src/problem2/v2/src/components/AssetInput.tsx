@@ -8,6 +8,8 @@ interface AssetInputProps {
   id: string;
   label: string;
   onAmountChange?: (amount: string) => void;
+  onAmountBlur?: () => void;
+  onAmountFocus?: () => void;
   onTokenChange: (symbol: string) => void;
   readOnly?: boolean;
   tokenSymbol: string;
@@ -22,6 +24,8 @@ export function AssetInput({
   id,
   label,
   onAmountChange,
+  onAmountBlur,
+  onAmountFocus,
   onTokenChange,
   readOnly = false,
   tokenSymbol,
@@ -39,7 +43,9 @@ export function AssetInput({
           aria-describedby={error ? `${id}-error` : undefined}
           id={id}
           inputMode="decimal"
+          onBlur={onAmountBlur}
           onChange={(event) => onAmountChange?.(event.target.value)}
+          onFocus={onAmountFocus}
           placeholder="0.00"
           readOnly={readOnly}
           type="text"

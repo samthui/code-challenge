@@ -37,10 +37,13 @@ describe("Currency Swap V2", () => {
 
     render(<App />);
 
+    expect(screen.queryByText("Currency Swap")).toBeNull();
+
     const user = userEvent.setup();
     const amount = await screen.findByLabelText(/amount to send/i);
     await user.type(amount, "1");
 
+    expect(await screen.findByText("Live prices")).toBeTruthy();
     expect(await screen.findByDisplayValue(/1,645.93/)).toBeTruthy();
 
     await user.selectOptions(screen.getByLabelText(/token to receive/i), "ETH");
@@ -61,12 +64,11 @@ describe("Currency Swap V2", () => {
 
     render(<App />);
 
-    expect(await screen.findByText("Fallback prices")).toBeTruthy();
-
     const user = userEvent.setup();
     await user.type(await screen.findByLabelText(/amount to send/i), "1");
 
     expect(await screen.findByDisplayValue(/1,645.93373737/)).toBeTruthy();
+    expect(screen.getByText("Fallback prices")).toBeTruthy();
   });
 
   it("switches the send and receive tokens without changing the amount", async () => {
@@ -89,5 +91,28 @@ describe("Currency Swap V2", () => {
     expect((screen.getByLabelText(/token to send/i) as HTMLSelectElement).value).toBe("USDC");
     expect((screen.getByLabelText(/token to receive/i) as HTMLSelectElement).value).toBe("ETH");
     expect((screen.getByLabelText(/amount to send/i) as HTMLInputElement).value).toBe("1");
+  });
+
+  it("formats the send amount on blur and removes grouping while focused", async () => {
+    vi.stubGlobal("fetch", vi.fn(async () => ({
+      ok: true,
+      json: async () => [
+        { currency: "ETH", price: 1645.93, date: "2023-08-29T07:10:00.000Z" },
+        { currency: "USDC", price: 1, date: "2023-08-29T07:10:00.000Z" }
+      ]
+    })));
+
+    render(<App />);
+
+    const user = userEvent.setup();
+    const amount = await screen.findByLabelText(/amount to send/i);
+    await user.type(amount, "12345.6700");
+    expect((amount as HTMLInputElement).value).toBe("12345.6700");
+
+    await user.tab();
+    expect((amount as HTMLInputElement).value).toBe("12,345.6700");
+
+    await user.click(amount);
+    expect((amount as HTMLInputElement).value).toBe("12345.6700");
   });
 });

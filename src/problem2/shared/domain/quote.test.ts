@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import { ERROR_MESSAGES, TOKEN_SYMBOLS } from "./tokens";
 import { calculateQuote, normalizePrices } from "./quote";
-import { formatAmount, formatUsd } from "../presentation/formatters";
 
 import { it as test } from "vitest";
 
@@ -81,11 +80,4 @@ test("calculateQuote reports validation errors instead of NaN output", () => {
     }).errors,
     [ERROR_MESSAGES.missingPrice]
   );
-});
-
-test("formatters preserve crypto precision and USD readability", () => {
-  assert.equal(formatAmount(0.004039850455012084, 8), "0.00403985");
-  assert.equal(formatAmount(1645.9337373737374, 8), "1,645.93373737");
-  assert.equal(formatUsd(1645.9337373737374), "$1,645.93");
-  assert.equal(formatUsd(0.004039850455012084), "$0.00404");
 });

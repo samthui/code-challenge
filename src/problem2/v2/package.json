@@ -7,7 +7,7 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc --noEmit && vite build",
     "test": "vitest run",
-    "test:shared": "vitest run --root .. shared/domain/quote.test.ts shared/infrastructure/requestClient.test.ts shared/infrastructure/http/jsonClient.test.ts shared/infrastructure/http/axiosJsonClient.test.ts shared/application/loadTokenPrices.test.ts shared/presentation/createSwapViewModel.test.ts"
+    "test:shared": "vitest run --root .. shared/domain/quote.test.ts shared/domain/validation.test.ts shared/infrastructure/requestClient.test.ts shared/infrastructure/http/jsonClient.test.ts shared/infrastructure/http/axiosJsonClient.test.ts shared/application/loadTokenPrices.test.ts shared/presentation/createSwapViewModel.test.ts shared/presentation/formatters.test.ts"
   },
   "dependencies": {
     "@tanstack/react-query": "latest",
