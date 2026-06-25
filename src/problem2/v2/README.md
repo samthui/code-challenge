@@ -36,7 +36,7 @@ Supported values:
 - `fetch`
 - `axios`
 
-Both concrete clients implement the shared `JsonClient` port from `src/problem2/shared/infrastructure/http/jsonClient.js`. `createJsonClient` is the factory that returns the selected concrete client.
+Both concrete clients implement the shared `JsonClient` port from `src/problem2/shared/infrastructure/http/jsonClient.ts`. `createJsonClient` is the factory that returns the selected concrete client.
 
 Server-state/query libraries are selected in `src/composition/appConfig.js` through `APP_CONFIG.serverStateLibrary`.
 

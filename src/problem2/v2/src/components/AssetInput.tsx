@@ -1,0 +1,66 @@
+import { TokenSelect } from "./TokenSelect";
+import type { TokenPrice } from "../../../shared/domain/tokens";
+
+interface AssetInputProps {
+  amount: string;
+  error?: string;
+  getTokenIconUrl: (symbol: string) => string;
+  id: string;
+  label: string;
+  onAmountChange?: (amount: string) => void;
+  onTokenChange: (symbol: string) => void;
+  readOnly?: boolean;
+  tokenSymbol: string;
+  tokens: TokenPrice[];
+  usdValue: string;
+}
+
+export function AssetInput({
+  amount,
+  error,
+  getTokenIconUrl,
+  id,
+  label,
+  onAmountChange,
+  onTokenChange,
+  readOnly = false,
+  tokenSymbol,
+  tokens,
+  usdValue
+}: AssetInputProps) {
+  return (
+    <section className={`asset-panel${error ? " has-error" : ""}`}>
+      <div className="asset-panel__top">
+        <label htmlFor={id}>{label}</label>
+        <span>{usdValue}</span>
+      </div>
+      <div className="asset-panel__main">
+        <input
+          aria-describedby={error ? `${id}-error` : undefined}
+          id={id}
+          inputMode="decimal"
+          onChange={(event) => onAmountChange?.(event.target.value)}
+          placeholder="0.00"
+          readOnly={readOnly}
+          type="text"
+          value={amount}
+        />
+        <div className="asset-panel__token">
+          <img alt="" src={getTokenIconUrl(tokenSymbol)} />
+          <TokenSelect
+            id={`${id}-token`}
+            label={readOnly ? "Token to receive" : "Token to send"}
+            onChange={onTokenChange}
+            tokens={tokens}
+            value={tokenSymbol}
+          />
+        </div>
+      </div>
+      {error ? (
+        <p className="field-error" id={`${id}-error`} role="alert">
+          {error}
+        </p>
+      ) : null}
+    </section>
+  );
+}

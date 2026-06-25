@@ -5,23 +5,27 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "tsc --noEmit && vite build",
     "test": "vitest run",
-    "test:shared": "node ../shared/domain/quote.test.js && node ../shared/infrastructure/requestClient.test.js && node ../shared/infrastructure/http/jsonClient.test.js && node ../shared/infrastructure/http/axiosJsonClient.test.js && node ../shared/application/loadTokenPrices.test.js && node ../shared/presentation/createSwapViewModel.test.js"
+    "test:shared": "vitest run --root .. shared/domain/quote.test.ts shared/infrastructure/requestClient.test.ts shared/infrastructure/http/jsonClient.test.ts shared/infrastructure/http/axiosJsonClient.test.ts shared/application/loadTokenPrices.test.ts shared/presentation/createSwapViewModel.test.ts"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
     "@tanstack/react-query": "latest",
+    "@vitejs/plugin-react": "latest",
     "axios": "latest",
-    "vite": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "swr": "latest"
+    "swr": "latest",
+    "vite": "latest"
   },
   "devDependencies": {
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
+    "@types/node": "^26.0.1",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
     "jsdom": "latest",
+    "typescript": "latest",
     "vitest": "latest"
   }
 }
