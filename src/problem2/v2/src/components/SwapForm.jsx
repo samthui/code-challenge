@@ -3,11 +3,18 @@ import { getTokenIconUrl } from "../../../shared/presentation/tokenIcons.js";
 import { UI_TEXT } from "../../../shared/presentation/uiText.js";
 import { AssetInput } from "./AssetInput.jsx";
 import { QuoteSummary } from "./QuoteSummary.jsx";
+import { APP_CONFIG } from "../composition/appConfig.js";
+import { createPriceRepository } from "../composition/priceRepository.js";
 import { useSwapForm } from "../hooks/useSwapForm.js";
-import { useTokenPrices } from "../hooks/useTokenPrices.js";
+import { useMemo } from "react";
+import { useTokenPrices } from "../server-state/useTokenPrices.js";
 
 export function SwapForm() {
-  const priceState = useTokenPrices();
+  const priceRepository = useMemo(
+    () => createPriceRepository({ httpClientType: APP_CONFIG.httpClient }),
+    []
+  );
+  const priceState = useTokenPrices(priceRepository, APP_CONFIG.serverStateLibrary);
   const form = useSwapForm();
   const model = createSwapViewModel({
     amount: form.amount,

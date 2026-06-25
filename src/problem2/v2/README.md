@@ -27,6 +27,39 @@ npm test
 
 `test:shared` verifies the reusable clean-boundary modules. `npm test` runs the React behavior smoke test with Vitest and React Testing Library.
 
+## Adapter Boundaries
+
+HTTP clients are selected in `src/composition/appConfig.js` through `APP_CONFIG.httpClient`.
+
+Supported values:
+
+- `fetch`
+- `axios`
+
+Both concrete clients implement the shared `JsonClient` port from `src/problem2/shared/infrastructure/http/jsonClient.js`. `createJsonClient` is the factory that returns the selected concrete client.
+
+Server-state/query libraries are selected in `src/composition/appConfig.js` through `APP_CONFIG.serverStateLibrary`.
+
+Supported values:
+
+- `plain`
+- `tanstack`
+- `swr`
+
+Each adapter implements the same `TokenPricesResourceHook` shape. `createTokenPricesResourceHook` is the factory that returns the selected hook implementation.
+
+The dependency flow is:
+
+```text
+React components
+  -> server-state adapter
+  -> shared application use case
+  -> Switcheo price repository
+  -> HTTP client adapter
+```
+
+UI components do not import `fetch`, Axios, TanStack Query, or SWR directly.
+
 ## Build
 
 ```bash
