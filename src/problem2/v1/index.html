@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Currency Swap</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="swap-card" aria-labelledby="swap-title">
+        <header class="swap-header">
+          <div>
+            <p class="eyebrow">Static V1</p>
+            <h1 id="swap-title">Swap tokens</h1>
+          </div>
+          <div class="status-pill" id="market-status" aria-live="polite">Loading prices</div>
+        </header>
+
+        <form class="swap-form" id="swap-form" novalidate>
+          <div class="asset-panel">
+            <div class="field-heading"><label for="from-amount">From</label><span id="from-usd-value">$0.00</span></div>
+            <div class="asset-row">
+              <input id="from-amount" name="fromAmount" inputmode="decimal" autocomplete="off" placeholder="0.00" aria-describedby="amount-error" />
+              <div class="token-select-wrap"><img id="from-token-icon" class="token-icon" alt="" /><select id="from-token" name="fromToken" aria-label="Token to send"></select></div>
+            </div>
+            <p class="field-error" id="amount-error" aria-live="polite"></p>
+          </div>
+
+          <button class="swap-direction" type="button" id="swap-direction" aria-label="Switch from and to tokens"><span aria-hidden="true">↓↑</span></button>
+
+          <div class="asset-panel">
+            <div class="field-heading"><label for="to-amount">To</label><span id="to-usd-value">$0.00</span></div>
+            <div class="asset-row">
+              <input id="to-amount" name="toAmount" placeholder="0.00" readonly tabindex="-1" />
+              <div class="token-select-wrap"><img id="to-token-icon" class="token-icon" alt="" /><select id="to-token" name="toToken" aria-label="Token to receive"></select></div>
+            </div>
+          </div>
+
+          <div class="quote-panel" aria-live="polite">
+            <div><span>Estimated quote</span><strong id="quote-rate">Enter an amount</strong></div>
+            <div><span>Network fee</span><strong id="quote-fee">$0.00</strong></div>
+            <div><span>Minimum received</span><strong id="quote-minimum">0.00</strong></div>
+          </div>
+
+          <p class="form-message" id="form-message" aria-live="polite"></p>
+          <button class="confirm-button" id="confirm-button" type="submit" disabled>Confirm swap</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="swap-constants.js"></script>
+    <script src="swap-core.js"></script>
+    <script src="request-client.js"></script>
+    <script src="price-service.js"></script>
+    <script src="swap-view.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
